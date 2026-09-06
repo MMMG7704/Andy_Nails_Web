@@ -6,3 +6,4 @@ target/
 application.properties
 error-spring.txt
 MariaDB
+backend/Spring Boot/AndyNailsBackend/src/main/java/andynails/GenerarBCrypt.java
