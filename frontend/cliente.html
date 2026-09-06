@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi cuenta - Andy Nails</title>
+
+    <link rel="stylesheet" href="css/cliente.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Andy <span>Nails</span>
+        </div>
+
+        <p class="tipo-usuario">CLIENTE</p>
+
+        <nav class="menu">
+
+            <button class="menu-item activo" data-seccion="inicio">
+                Inicio
+            </button>
+
+            <button class="menu-item" data-seccion="misCitas">
+                Mis citas
+            </button>
+
+            <button class="menu-item" data-seccion="servicios">
+                Servicios
+            </button>
+
+            <button class="menu-item" data-seccion="pagos">
+                Mis pagos
+            </button>
+
+            <button class="menu-item" data-seccion="perfil">
+                Mi perfil
+            </button>
+
+        </nav>
+
+        <button class="btn-salir" id="btnSalir">
+            Cerrar sesión
+        </button>
+
+    </aside>
+
+
+    <!--   CONTENIDO   -->
+
+    <main class="contenido">
+
+        <!--   HEADER   -->
+
+        <header class="topbar">
+
+            <div>
+                <h1 id="tituloSeccion">Inicio</h1>
+                <p>Mi cuenta de Andy Nails</p>
+            </div>
+
+            <div class="cliente-info">
+
+                <div class="avatar" id="avatarCliente">
+                    C
+                </div>
+
+                <div>
+                    <strong id="nombreCliente">
+                        Cliente
+                    </strong>
+
+                    <span>
+                        Andy Nails
+                    </span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!--   INICIO   -->
+
+        <section id="inicio" class="seccion activa">
+
+            <div class="bienvenida">
+
+                <h2 id="mensajeBienvenida">
+                    Bienvenida a Andy Nails
+                </h2>
+
+                <p>
+                    Desde aquí puedes consultar tus citas,
+                    servicios, pagos y datos personales.
+                </p>
+
+            </div>
+
+
+            <div class="tarjetas-resumen">
+
+                <div class="tarjeta-resumen">
+
+                    <div class="icono">
+                        C
+                    </div>
+
+                    <div>
+                        <span>Mis citas</span>
+                        <strong id="totalCitas">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="tarjeta-resumen">
+
+                    <div class="icono">
+                        S
+                    </div>
+
+                    <div>
+                        <span>Servicios</span>
+                        <strong id="totalServicios">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="tarjeta-resumen">
+
+                    <div class="icono">
+                        P
+                    </div>
+
+                    <div>
+                        <span>Pagos pendientes</span>
+                        <strong id="pagosPendientes">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>Próxima cita</h2>
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Servicio</th>
+                                <th>Estado</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaProximaCita">
+
+                            <tr>
+                                <td colspan="4" class="sin-datos">
+                                    No tienes citas próximas.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!--   MIS CITAS  -->
+
+        <section id="misCitas" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>Mis citas</h2>
+
+                <button class="btn-principal" onclick="window.location.href='agendar-cita.html'">
+                    + Agendar cita
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Servicio</th>
+                                <th>Precio</th>
+                                <th>Estado</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaCitas">
+
+                            <tr>
+                                <td colspan="5" class="sin-datos">
+                                    No tienes citas registradas.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SERVICIOS   -->
+
+        <section id="servicios" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>Servicios</h2>
+
+            </div>
+
+
+            <div class="servicios-grid">
+
+                <div class="servicio-card">
+
+                    <div class="servicio-icono">
+                        U
+                    </div>
+
+                    <h3>Uñas</h3>
+
+                    <p>
+                        Consulta nuestros servicios de uñas.
+                    </p>
+
+                    <button onclick="window.location.href='catalogo.html#unas'">
+                        Ver servicios
+                    </button>
+
+                </div>
+
+
+                <div class="servicio-card">
+
+                    <div class="servicio-icono">
+                        M
+                    </div>
+
+                    <h3>Maquillaje</h3>
+
+                    <p>
+                        Consulta nuestros servicios de maquillaje.
+                    </p>
+
+                    <button onclick="window.location.href='catalogo.html#maquillaje'">
+                        Ver servicios
+                    </button>
+
+                </div>
+
+
+                <div class="servicio-card">
+
+                    <div class="servicio-icono">
+                        P
+                    </div>
+
+                    <h3>Peinados</h3>
+
+                    <p>
+                        Consulta nuestros servicios de peinados.
+                    </p>
+
+                    <button onclick="window.location.href='catalogo.html#peinados'">
+                        Ver servicios
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!--   PAGOS  -->
+
+        <section id="pagos" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>Mis pagos</h2>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Servicio</th>
+                                <th>Total</th>
+                                <th>Anticipo</th>
+                                <th>Restante</th>
+                                <th>Estado</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaPagos">
+
+                            <tr>
+                                <td colspan="6" class="sin-datos">
+                                    No tienes pagos registrados.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!--   PERFIL   -->
+
+        <section id="perfil" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>Mi perfil</h2>
+
+            </div>
+
+
+            <div class="panel perfil-panel">
+
+                <div class="formulario-perfil">
+
+                    <label for="nombre">
+                        Nombre
+                    </label>
+
+                    <input type="text" id="nombre" readonly>
+
+
+                    <label for="apellidoPaterno">
+                        Apellido paterno
+                    </label>
+
+                    <input type="text" id="apellidoPaterno" readonly>
+
+
+                    <label for="apellidoMaterno">
+                        Apellido materno
+                    </label>
+
+                    <input type="text" id="apellidoMaterno" readonly>
+
+
+                    <label for="telefono">
+                        Teléfono
+                    </label>
+
+                    <input type="text" id="telefono" readonly>
+
+
+                    <label for="correo">
+                        Correo electrónico
+                    </label>
+
+                    <input type="email" id="correo" readonly>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/cliente.js"></script>
+
+</body>
+
+</html>

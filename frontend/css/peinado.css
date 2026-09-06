@@ -1,0 +1,408 @@
+/* GENERAL  */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff8fa;
+    color: #3d3035;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* NAVBAR  */
+
+.navbar {
+    width: 100%;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 8%;
+
+    border-bottom: 1px solid #f0dce3;
+
+    box-shadow: 0 3px 12px rgba(61, 48, 53, 0.08);
+}
+
+
+/*  LOGO  */
+
+.logo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+
+    letter-spacing: 0;
+
+    color: #3d3035;
+
+    text-decoration: none;
+}
+
+.logo span {
+    color: #d88ba4;
+
+    font-family: Georgia, serif;
+
+    font-style: normal;
+    font-weight: normal;
+
+    margin-left: 0;
+}
+
+.logo:hover {
+    opacity: 0.85;
+}
+
+
+/*  NAV */
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+nav>a,
+.dropbtn {
+    color: #3d3035;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: normal;
+
+    padding: 10px 5px;
+
+    transition: color 0.3s ease;
+}
+
+nav>a:hover,
+.dropbtn:hover {
+    color: #d88ba4;
+}
+
+
+/* DROPDOWN  */
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    min-width: 190px;
+
+    background-color: white;
+
+    border-radius: 12px;
+
+    border: 1px solid #f0dce3;
+
+    box-shadow: 0 8px 20px rgba(61, 48, 53, 0.12);
+
+    overflow: hidden;
+
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    display: block;
+
+    color: #3d3035;
+
+    text-decoration: none;
+
+    padding: 14px 18px;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #fff0f4;
+
+    color: #d88ba4;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* CATALOGO */
+
+.catalogo {
+
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: 40px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 35px;
+
+}
+
+
+.categoria {
+
+    text-align: center;
+
+}
+
+
+.categoria h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.tarjeta {
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15);
+
+    padding-bottom: 25px;
+
+    transition:
+        transform 0.3s ease;
+
+}
+
+
+.tarjeta:hover {
+
+    transform:
+        translateY(-5px);
+
+}
+
+
+.tarjeta img {
+
+    width: 100%;
+
+    height: 300px;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+.tarjeta h3 {
+
+    font-size: 21px;
+
+    margin:
+        15px 10px 8px;
+
+}
+
+
+.tarjeta p {
+
+    min-height: 45px;
+
+    font-size: 16px;
+
+    margin:
+        10px 20px;
+
+}
+
+
+.precio-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin:
+        20px 0;
+
+}
+
+
+.precio-container span:first-child {
+
+    font-weight: bold;
+
+}
+
+
+.precio-container span:last-child {
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+}
+
+
+/* BOTON */
+
+.btn-seleccionar {
+
+    background-color: #ffccff;
+
+    border: none;
+
+    padding:
+        12px 25px;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+}
+
+
+.btn-seleccionar:hover {
+
+    opacity: 0.8;
+
+}
+
+
+/* ERROR  */
+
+.error {
+
+    text-align: center;
+
+    color: red;
+
+    font-size: 18px;
+
+}
+
+
+/* FOOTER */
+
+footer {
+
+    background-color: #d88ba4;
+
+    padding: 22px;
+
+    text-align: center;
+
+    border-top: 1px solid #f0dce3;
+
+    box-shadow:
+        0 -3px 10px rgba(61, 48, 53, 0.05);
+}
+
+
+/* REDES SOCIALES */
+
+.redes {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.redes a {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+
+}
+
+
+.redes img {
+
+    width: 35px;
+
+    height: 35px;
+
+    object-fit: contain;
+
+    display: block;
+
+}
+
+
+.redes a:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.redes img:hover {
+
+    opacity: 0.8;
+
+}
+
+
+/* RESPONSIVE  */
+
+@media (max-width: 900px) {
+
+    .catalogo {
+
+        grid-template-columns:
+            1fr;
+
+        max-width: 500px;
+
+    }
+
+}

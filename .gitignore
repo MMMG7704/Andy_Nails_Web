@@ -1,0 +1,8 @@
+*.class
+target/
+.idea/
+.vscode/
+
+application.properties
+error-spring.txt
+MariaDB

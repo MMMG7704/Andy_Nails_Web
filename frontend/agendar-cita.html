@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Andy Nails | Agendar cita</title>
+
+    <link rel="stylesheet" href="css/agendar-cita.css">
+
+
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="header">
+
+        <div class="logo">
+            <span>Andy</span> Nails
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">Inicio</a>
+            <a href="agendar-cita.html" class="activo">Agendar cita</a>
+            <a href="mis-citas.html">Mis citas</a>
+        </nav>
+
+        <button class="btn-salir" onclick="cerrarSesion()">
+            Cerrar sesión
+        </button>
+
+    </header>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor">
+
+        <section class="encabezado">
+
+            <p class="subtitulo">
+                ANDY NAILS
+            </p>
+
+            <h1>
+                Agenda tu cita
+            </h1>
+
+            <p>
+                Selecciona el servicio, fecha y hora
+                que prefieras.
+            </p>
+
+        </section>
+
+
+        <!-- CONTENEDOR DE AGENDADO -->
+        <section class="agendar-card">
+
+
+            <!-- PASO 1 -->
+            <div class="paso">
+
+                <div class="numero">
+                    1
+                </div>
+
+                <div class="contenido-paso">
+
+                    <h2>
+                        Selecciona tu servicio
+                    </h2>
+
+                    <select id="servicio">
+
+                        <option value="">
+                            Selecciona un servicio
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASO 2 -->
+            <div class="paso">
+
+                <div class="numero">
+                    2
+                </div>
+
+                <div class="contenido-paso">
+
+                    <h2>
+                        Selecciona la fecha
+                    </h2>
+
+                    <input type="date" id="fecha">
+
+                </div>
+
+            </div>
+
+
+            <!-- PASO 3 -->
+            <div class="paso">
+
+                <div class="numero">
+                    3
+                </div>
+
+                <div class="contenido-paso">
+
+                    <h2>
+                        Selecciona la hora
+                    </h2>
+
+                    <select id="hora">
+
+                        <option value="">
+                            Selecciona una hora
+                        </option>
+
+                        <option value="09:00">
+                            09:00 AM
+                        </option>
+
+                        <option value="10:00">
+                            10:00 AM
+                        </option>
+
+                        <option value="11:00">
+                            11:00 AM
+                        </option>
+
+                        <option value="12:00">
+                            12:00 PM
+                        </option>
+
+                        <option value="13:00">
+                            01:00 PM
+                        </option>
+
+                        <option value="14:00">
+                            02:00 PM
+                        </option>
+
+                        <option value="15:00">
+                            03:00 PM
+                        </option>
+
+                        <option value="16:00">
+                            04:00 PM
+                        </option>
+
+                        <option value="17:00">
+                            05:00 PM
+                        </option>
+
+                        <option value="18:00">
+                            06:00 PM
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESUMEN -->
+            <div class="resumen">
+
+                <h2>
+                    Resumen de tu cita
+                </h2>
+
+                <div class="dato">
+
+                    <span>
+                        Servicio
+                    </span>
+
+                    <strong id="resumenServicio">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="dato">
+
+                    <span>
+                        Fecha
+                    </span>
+
+                    <strong id="resumenFecha">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="dato">
+
+                    <span>
+                        Hora
+                    </span>
+
+                    <strong id="resumenHora">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENSAJE -->
+            <p id="mensajeCita" class="mensaje"></p>
+
+
+            <!-- BOTÓN -->
+            <button id="btnConfirmar" class="btn-confirmar" onclick="confirmarCita()">
+
+                Confirmar cita
+
+            </button>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <div class="redes">
+
+            <!-- INSTAGRAM -->
+            <a href="https://www.instagram.com/andynails378?igsh=eW5haTJ4OWY3Mm14" target="_blank"
+                rel="noopener noreferrer">
+                <img src="img/icon_inst.jpeg" alt="Instagram">
+            </a>
+
+            <!-- WHATSAPP -->
+            <a href="https://wa.me/8442756590" ; target="_blank" rel="noopener noreferrer">
+                <img src="img/icon_Whatsapp.jpeg" alt="WhatsApp">
+            </a>
+
+            <!-- FACEBOOK -->
+            <a href="https://www.facebook.com/share/17LcvkhEJT/" target="_blank" rel="noopener noreferrer">
+                <img src="img/icon_Facebook.jpeg" alt="Facebook">
+            </a>
+
+        </div>
+
+    </footer>
+    <script src="js/agendar-cita.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registrarse - Andy Nails</title>
+
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/registro.css">
+</head>
+
+<body>
+
+    <!-- MENÚ -->
+    <header class="navbar">
+
+        <div class="logo-menu">
+            <a href="index.html" class="logo">
+                Andy <span>Nails</span>
+            </a>
+        </div>
+
+        <nav>
+            <a href="index.html">INICIO</a>
+
+            <div class="dropdown">
+                <a href="catalogo.html">CATÁLOGO</a>
+
+                <div class="dropdown-content">
+                    <a href="catalogo.html#unas">Uñas</a>
+                    <a href="catalogo.html#peinados">Peinados</a>
+                    <a href="catalogo.html#maquillaje">Maquillaje</a>
+                    <a href="catalogo.html#otros">Otros</a>
+                </div>
+            </div>
+
+            <a href="#">AGENDAR CITA</a>
+            <a href="contacto.html">CONTACTO</a> <a href="login.html">LOGIN</a>
+        </nav>
+
+    </header>
+
+
+    <!-- REGISTRO -->
+    <main class="registro-container">
+
+        <!-- LOGO -->
+        <section class="registro-logo">
+
+            <div class="logo-placeholder">
+                LOGO
+            </div>
+
+        </section>
+
+
+        <!-- FORMULARIO -->
+        <section class="registro-box">
+
+            <h1>Crear cuenta</h1>
+
+            <form id="registroForm">
+
+                <label for="nombre">Nombre</label>
+
+                <input type="text" id="nombre" name="nombre" maxlength="10" required>
+
+
+                <label for="paterno">Apellido paterno</label>
+
+                <input type="text" id="paterno" name="paterno" maxlength="10" required>
+
+
+                <label for="materno">Apellido materno</label>
+
+                <input type="text" id="materno" name="materno" maxlength="10" required>
+
+
+                <label for="telefono">Teléfono</label>
+
+                <input type="tel" id="telefono" name="telefono" maxlength="10" required>
+
+
+                <label for="correo">Correo electrónico</label>
+
+                <input type="email" id="correo" name="correo" maxlength="35" required>
+
+
+                <label for="contrasena">Contraseña</label>
+
+                <input type="password" id="contrasena" name="contrasena" maxlength="15" required>
+
+
+                <label for="confirmarContrasena">
+                    Confirmar contraseña
+                </label>
+
+                <input type="password" id="confirmarContrasena" name="confirmarContrasena" maxlength="15" required>
+
+
+                <button type="submit">
+                    Registrarse
+                </button>
+
+
+                <hr>
+
+
+                <button type="button" class="btn-regresar" onclick="window.location.href='login.html'">
+                    Regresar
+                </button>
+
+
+                <p id="mensaje"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+
+        <div class="redes">
+
+            <!-- INSTAGRAM -->
+            <a href="https://www.instagram.com/andynails378?igsh=eW5haTJ4OWY3Mm14" target="_blank"
+                rel="noopener noreferrer">
+                <img src="img/icon_inst.jpeg" alt="Instagram">
+            </a>
+
+            <!-- WHATSAPP -->
+            <a href="https://wa.me/8442756590" ; target="_blank" rel="noopener noreferrer">
+                <img src="img/icon_Whatsapp.jpeg" alt="WhatsApp">
+            </a>
+
+            <!-- FACEBOOK -->
+            <a href="https://www.facebook.com/share/17LcvkhEJT/" target="_blank" rel="noopener noreferrer">
+                <img src="img/icon_Facebook.jpeg" alt="Facebook">
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/registro.js"></script>
+
+</body>
+
+</html>

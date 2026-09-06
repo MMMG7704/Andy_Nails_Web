@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administración - Andy Nails</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Andy <span>Nails</span>
+        </div>
+
+        <p class="tipo-usuario">ADMINISTRADORA</p>
+
+        <nav class="menu">
+
+            <button class="menu-item activo" data-seccion="inicio">
+                Inicio
+            </button>
+
+            <button class="menu-item" data-seccion="citas">
+                Citas
+            </button>
+
+            <button class="menu-item" data-seccion="clientes">
+                Clientes
+            </button>
+
+            <button class="menu-item" data-seccion="servicios">
+                Servicios
+            </button>
+
+            <button class="menu-item" data-seccion="pagos">
+                Pagos
+            </button>
+
+            <button class="menu-item" data-seccion="horarios">
+                Horarios
+            </button>
+
+            <button class="menu-item" data-seccion="reportes">
+                Reportes
+            </button>
+
+        </nav>
+
+        <button class="btn-salir" id="btnSalir">
+            Cerrar sesión
+        </button>
+
+    </aside>
+
+
+    <!--  CONTENIDO   -->
+
+    <main class="contenido">
+
+        <!--  HEADER  -->
+
+        <header class="topbar">
+
+            <div>
+                <h1 id="tituloSeccion">Inicio</h1>
+
+                <p>
+                    Panel de administración de Andy Nails
+                </p>
+            </div>
+
+            <div class="admin-info">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+                    <strong>Administradora</strong>
+                    <span>Andy Nails</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!--   INICIO  -->
+
+        <section id="inicio" class="seccion activa">
+
+            <div class="bienvenida">
+
+                <h2>
+                    ¡Bienvenida, Administradora!
+                </h2>
+
+                <p>
+                    Desde aquí puedes administrar las citas,
+                    clientes, servicios, pagos y horarios de Andy Nails.
+                </p>
+
+            </div>
+
+
+            <!-- ================= TARJETAS RESUMEN ================= -->
+
+            <div class="tarjetas-resumen">
+
+                <!-- CITAS DE HOY -->
+
+                <div class="tarjeta-resumen">
+
+                    <div class="icono"></div>
+
+                    <div>
+
+                        <span>
+                            Citas de hoy
+                        </span>
+
+                        <strong id="totalCitasHoy">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CLIENTES -->
+
+                <div class="tarjeta-resumen">
+
+                    <div class="icono"></div>
+
+                    <div>
+
+                        <span>
+                            Clientes
+                        </span>
+
+                        <strong id="totalClientes">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SERVICIOS -->
+
+                <div class="tarjeta-resumen">
+
+                    <div class="icono"></div>
+
+                    <div>
+
+                        <span>
+                            Servicios
+                        </span>
+
+                        <strong id="totalServicios">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PAGOS PENDIENTES -->
+
+                <div class="tarjeta-resumen">
+
+                    <div class="icono"></div>
+
+                    <div>
+
+                        <span>
+                            Pagos pendientes
+                        </span>
+
+                        <strong id="totalPagosPendientes">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!--  PRÓXIMAS CITAS   -->
+
+            <div class="panel">
+
+                <h2>
+                    Próximas citas
+                </h2>
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Cliente
+                                </th>
+
+                                <th>
+                                    Fecha
+                                </th>
+
+                                <th>
+                                    Hora
+                                </th>
+
+                                <th>
+                                    Servicio
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tablaProximasCitas">
+
+                            <tr>
+
+                                <td colspan="5" class="sin-datos">
+                                    No hay citas registradas.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!--   CITAS  -->
+
+        <section id="citas" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>
+                    Citas
+                </h2>
+
+                <button class="btn-principal">
+                    + Nueva cita
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Cliente
+                                </th>
+
+                                <th>
+                                    Fecha
+                                </th>
+
+                                <th>
+                                    Hora
+                                </th>
+
+                                <th>
+                                    Servicio
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tablaCitas">
+
+                            <tr>
+
+                                <td colspan="6" class="sin-datos">
+                                    No hay citas registradas.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!--   CLIENTES   -->
+
+        <section id="clientes" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>
+                    Clientes
+                </h2>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Nombre
+                                </th>
+
+                                <th>
+                                    Correo
+                                </th>
+
+                                <th>
+                                    Teléfono
+                                </th>
+
+                                <th>
+                                    Citas
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tablaClientes">
+
+                            <tr>
+
+                                <td colspan="4" class="sin-datos">
+                                    No hay clientes registrados.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!--  SERVICIOS  -->
+
+        <section id="servicios" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>
+                    Servicios
+                </h2>
+
+                <button class="btn-principal">
+                    + Nuevo servicio
+                </button>
+
+            </div>
+
+
+            <div class="servicios-grid">
+
+                <!-- UÑAS -->
+
+                <div class="servicio-card">
+
+                    <div class="servicio-icono"></div>
+
+                    <h3>
+                        Uñas
+                    </h3>
+
+                    <p>
+                        Administración de servicios de uñas.
+                    </p>
+
+                    <button>
+                        Administrar
+                    </button>
+
+                </div>
+
+
+                <!-- MAQUILLAJE -->
+
+                <div class="servicio-card">
+
+                    <div class="servicio-icono"></div>
+
+                    <h3>
+                        Maquillaje
+                    </h3>
+
+                    <p>
+                        Administración de servicios de maquillaje.
+                    </p>
+
+                    <button>
+                        Administrar
+                    </button>
+
+                </div>
+
+
+                <!-- PEINADOS -->
+
+                <div class="servicio-card">
+
+                    <div class="servicio-icono"></div>
+
+                    <h3>
+                        Peinados
+                    </h3>
+
+                    <p>
+                        Administración de servicios de peinados.
+                    </p>
+
+                    <button>
+                        Administrar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PAGOS ================= -->
+
+        <section id="pagos" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>
+                    Pagos
+                </h2>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Cliente
+                                </th>
+
+                                <th>
+                                    Servicio
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                                <th>
+                                    Anticipo
+                                </th>
+
+                                <th>
+                                    Restante
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tablaPagos">
+
+                            <tr>
+
+                                <td colspan="6" class="sin-datos">
+                                    No hay pagos registrados.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!--  HORARIOS  -->
+
+        <section id="horarios" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>
+                    Horarios
+                </h2>
+
+                <button class="btn-principal">
+                    + Bloquear horario
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h3>
+                    Horarios bloqueados
+                </h3>
+
+                <p class="texto-info">
+
+                    Aquí podrás administrar los horarios
+                    en los que no se podrán agendar citas.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= REPORTES ================= -->
+
+        <section id="reportes" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <h2>
+                    Reportes
+                </h2>
+
+            </div>
+
+
+            <div class="reportes-grid">
+
+                <!-- REPORTE CITAS -->
+
+                <div class="reporte-card">
+
+                    <span></span>
+
+                    <h3>
+                        Citas
+                    </h3>
+
+                    <p>
+                        Consulta las citas realizadas.
+                    </p>
+
+                    <button>
+                        Ver reporte
+                    </button>
+
+                </div>
+
+
+                <!-- REPORTE INGRESOS -->
+
+                <div class="reporte-card">
+
+                    <span></span>
+
+                    <h3>
+                        Ingresos
+                    </h3>
+
+                    <p>
+                        Consulta los ingresos registrados.
+                    </p>
+
+                    <button>
+                        Ver reporte
+                    </button>
+
+                </div>
+
+
+                <!-- REPORTE CLIENTES -->
+
+                <div class="reporte-card">
+
+                    <span></span>
+
+                    <h3>
+                        Clientes
+                    </h3>
+
+                    <p>
+                        Consulta información de clientes.
+                    </p>
+
+                    <button>
+                        Ver reporte
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!--  JAVASCRIPT  -->
+
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>
