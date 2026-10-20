@@ -365,55 +365,53 @@
 
 
         <!--   PERFIL   -->
-
         <section id="perfil" class="seccion">
-
-            <div class="titulo-pagina">
-
-                <h2>Mi perfil</h2>
-
-            </div>
-
 
             <div class="panel perfil-panel">
 
-                <div class="formulario-perfil">
+                <p class="descripcion-perfil">
+                    Consulta y actualiza tus datos personales
+                </p>
 
-                    <label for="nombre">
-                        Nombre
-                    </label>
+                <form id="formularioPerfil">
 
-                    <input type="text" id="nombre" readonly>
+                    <div class="formulario-perfil">
 
+                        <div>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" required>
+                        </div>
 
-                    <label for="apellidoPaterno">
-                        Apellido paterno
-                    </label>
+                        <div>
+                            <label for="apellidoPaterno">Apellido paterno</label>
+                            <input type="text" id="apellidoPaterno">
+                        </div>
 
-                    <input type="text" id="apellidoPaterno" readonly>
+                        <div>
+                            <label for="apellidoMaterno">Apellido materno</label>
+                            <input type="text" id="apellidoMaterno">
+                        </div>
 
+                        <div>
+                            <label for="telefono">Teléfono</label>
+                            <input type="text" id="telefono" maxlength="10">
+                        </div>
 
-                    <label for="apellidoMaterno">
-                        Apellido materno
-                    </label>
+                        <div>
+                            <label for="correo">Correo</label>
+                            <input type="email" id="correo" required>
+                        </div>
 
-                    <input type="text" id="apellidoMaterno" readonly>
+                    </div>
 
+                    <div style="margin-top: 20px;">
+                        <button type="submit" class="btn-principal">
+                            Guardar cambios
+                        </button>
+                    </div>
 
-                    <label for="telefono">
-                        Teléfono
-                    </label>
+                </form>
 
-                    <input type="text" id="telefono" readonly>
-
-
-                    <label for="correo">
-                        Correo electrónico
-                    </label>
-
-                    <input type="email" id="correo" readonly>
-
-                </div>
 
             </div>
 
@@ -424,6 +422,53 @@
 
     <script src="js/cliente.js"></script>
 
+    <!-- ALERTA ANDY NAILS -->
+    <div id="modalAlerta" class="modal-alerta">
+        <div class="contenido-alerta">
+
+            <div id="iconoAlerta" class="icono-alerta">
+                ✓
+            </div>
+
+            <h2 id="tituloAlerta">Aviso</h2>
+
+            <p id="textoAlerta"></p>
+
+            <button id="btnAceptarAlerta" class="btn-aceptar-alerta">
+                Aceptar
+            </button>
+
+        </div>
+    </div>
+
+    <!-- MODAL MFA -->
+    <div id="modalMfa" class="modal-alerta">
+        <div class="contenido-alerta">
+
+            <div class="icono-alerta">✓</div>
+
+            <h2>Verificación de seguridad</h2>
+
+            <p>
+                Enviamos un código de 6 dígitos a tu correo.
+                Escríbelo para confirmar los cambios de tu perfil.
+            </p>
+
+            <input type="text" id="codigoMfa" maxlength="6" inputmode="numeric" placeholder="Código de 6 dígitos"
+                class="input-mfa">
+
+            <div class="botones-confirmacion">
+                <button type="button" id="btnCancelarMfa" class="btn-cancelar-alerta">
+                    Cancelar
+                </button>
+
+                <button type="button" id="btnVerificarMfa" class="btn-aceptar-alerta">
+                    Verificar
+                </button>
+            </div>
+
+        </div>
+    </div>
 </body>
 
 </html>

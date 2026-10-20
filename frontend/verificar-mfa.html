@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación - Andy Nails</title>
+    <link rel="stylesheet" href="css/verificar-mfa.css">
+</head>
+
+<body>
+    <main class="contenedor-login">
+        <section class="formulario-login">
+            <h1>Verificación de seguridad</h1>
+            <p>Ingresa el código de seis dígitos que enviamos a tu correo.</p>
+
+            <form id="mfaForm">
+                <label for="codigo">Código de verificación</label>
+                <input type="text" id="codigo" name="codigo" inputmode="numeric" pattern="[0-9]{6}" maxlength="6"
+                    placeholder="000000" autocomplete="one-time-code" required>
+
+                <button type="submit">Verificar código</button>
+                <p id="mensaje" role="status"></p>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/verificar-mfa.js"></script>
+</body>
+
+</html>

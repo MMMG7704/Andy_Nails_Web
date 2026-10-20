@@ -489,3 +489,139 @@ footer {
     }
 
 }
+
+/* AVISO DE CAMBIO DE ROL */
+
+.modal-aviso {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(61, 48, 53, 0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.contenido-aviso {
+    width: 380px;
+    max-width: 90%;
+    background: #fff8fa;
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(61, 48, 53, 0.25);
+}
+
+.icono-aviso {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #d88ba4;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.contenido-aviso h2 {
+    margin-bottom: 10px;
+    color: #3d3035;
+}
+
+.contenido-aviso p {
+    margin-bottom: 25px;
+    color: #6b5a60;
+    line-height: 1.5;
+}
+
+.btn-aceptar-aviso {
+    border: none;
+    background: #d88ba4;
+    color: white;
+    padding: 11px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn-aceptar-aviso:hover {
+    background: #c97894;
+}
+
+/* ALERTAS */
+
+.modal-alerta {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(61, 48, 53, 0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.contenido-alerta {
+    width: 380px;
+    max-width: 90%;
+    background: #fff8fa;
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(61, 48, 53, 0.25);
+    animation: aparecerAlerta 0.2s ease;
+}
+
+.icono-alerta {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #d88ba4;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.contenido-alerta h2 {
+    margin: 0 0 10px;
+    color: #3d3035;
+    font-size: 22px;
+}
+
+.contenido-alerta p {
+    margin: 0 0 25px;
+    color: #6b5a60;
+    line-height: 1.5;
+}
+
+.btn-aceptar-alerta {
+    border: none;
+    background: #d88ba4;
+    color: white;
+    padding: 11px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn-aceptar-alerta:hover {
+    background: #c97894;
+}
+
+@keyframes aparecerAlerta {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

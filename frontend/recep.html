@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recepcionista - Andy Nails</title>
+
+    <link rel="stylesheet" href="css/recep.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>Andy Nails</h2>
+            <span>Recepción</span>
+        </div>
+
+        <nav class="menu">
+
+            <button class="menu-item active" data-section="inicio">
+                Inicio
+            </button>
+
+            <button class="menu-item" data-section="citas">
+                Citas
+            </button>
+
+            <button class="menu-item" data-section="clientes">
+                Clientes
+            </button>
+
+            <button class="menu-item" data-section="servicios">
+                Servicios
+            </button>
+
+            <button class="menu-item" data-section="pagos">
+                Pagos
+            </button>
+
+            <button class="menu-item" data-section="horarios">
+                Horarios
+            </button>
+
+        </nav>
+
+        <button class="logout" id="btnCerrarSesion">
+            Cerrar sesión
+        </button>
+
+    </aside>
+
+
+    <!-- CONTENIDO -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+                <h1 id="tituloSeccion">Inicio</h1>
+
+                <p id="subtituloSeccion">
+                    Panel de recepción de Andy Nails
+                </p>
+            </div>
+
+            <div class="usuario-info">
+
+                <div class="usuario-avatar" id="usuarioInicial">
+                    R
+                </div>
+
+                <div>
+                    <strong id="nombreUsuario">
+                        Recepcionista
+                    </strong>
+
+                    <span>
+                        Recepcionista
+                    </span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- INICIO -->
+
+        <section id="inicio" class="section active">
+
+            <div class="bienvenida">
+
+                <h2>Bienvenida a Andy Nails</h2>
+
+                <p>
+                    Desde este panel puedes administrar las citas,
+                    clientes, servicios, pagos y horarios.
+                </p>
+
+            </div>
+
+
+            <!-- ESTADÍSTICAS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span>Citas de hoy</span>
+
+                    <strong id="totalCitasHoy">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Clientes registrados</span>
+
+                    <strong id="totalClientes">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Citas pendientes</span>
+
+                    <strong id="totalPendientes">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Pagos pendientes</span>
+
+                    <strong id="totalPagosPendientes">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRÓXIMAS CITAS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Próximas citas</h2>
+
+                        <p>
+                            Citas programadas recientemente
+                        </p>
+                    </div>
+
+                    <button class="btn-primary" id="btnVerCitas">
+                        Ver citas
+                    </button>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaProximasCitas">
+
+                            <tr>
+                                <td colspan="5" class="empty">
+                                    No hay citas registradas.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CITAS -->
+
+        <section id="citas" class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Citas</h2>
+
+                    <p>
+                        Consulta y administra las citas de los clientes.
+                    </p>
+                </div>
+
+                <button class="btn-primary" id="btnNuevaCita">
+                    Nueva cita
+                </button>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaCitas">
+
+                            <tr>
+                                <td colspan="6" class="empty">
+                                    No hay citas registradas.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CLIENTES -->
+
+        <section id="clientes" class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Clientes</h2>
+
+                    <p>
+                        Consulta la información de los clientes.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Estatus</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaClientes">
+
+                            <tr>
+                                <td colspan="4" class="empty">
+                                    No hay clientes registrados.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SERVICIOS -->
+
+        <section id="servicios" class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Servicios</h2>
+
+                    <p>
+                        Servicios disponibles en Andy Nails.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="services-grid" id="serviciosGrid">
+
+                <div class="empty-card">
+                    No hay servicios disponibles.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PAGOS -->
+
+        <section id="pagos" class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Pagos</h2>
+
+                    <p>
+                        Consulta los pagos de las citas.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Monto</th>
+                                <th>Método</th>
+                                <th>Estado</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaPagos">
+
+                            <tr>
+                                <td colspan="5" class="empty">
+                                    No hay pagos registrados.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HORARIOS -->
+
+        <section id="horarios" class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Horarios</h2>
+
+                    <p>
+                        Horarios disponibles para las citas.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="horarios-grid">
+
+                <div class="horario-card">
+                    <span>Lunes</span>
+                    <strong>09:00 - 19:00</strong>
+                </div>
+
+                <div class="horario-card">
+                    <span>Martes</span>
+                    <strong>09:00 - 19:00</strong>
+                </div>
+
+                <div class="horario-card">
+                    <span>Miércoles</span>
+                    <strong>09:00 - 19:00</strong>
+                </div>
+
+                <div class="horario-card">
+                    <span>Jueves</span>
+                    <strong>09:00 - 19:00</strong>
+                </div>
+
+                <div class="horario-card">
+                    <span>Viernes</span>
+                    <strong>09:00 - 19:00</strong>
+                </div>
+
+                <div class="horario-card">
+                    <span>Sábado</span>
+                    <strong>09:00 - 19:00</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/recep.js"></script>
+    <!-- ALERTA ANDY NAILS -->
+    <div id="modalAlerta" class="modal-alerta">
+        <div class="contenido-alerta">
+
+            <div id="iconoAlerta" class="icono-alerta">
+                ✓
+            </div>
+
+            <h2 id="tituloAlerta">Aviso</h2>
+
+            <p id="textoAlerta"></p>
+
+            <button id="btnAceptarAlerta" class="btn-aceptar-alerta">
+                Aceptar
+            </button>
+
+        </div>
+    </div>
+</body>
+
+</html>

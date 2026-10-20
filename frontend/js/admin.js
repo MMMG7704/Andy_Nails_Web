@@ -1,11 +1,56 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+
+
+    /* PETICIONES AL BACKEND CON TOKEN JWT */
+
+    async function fetchConToken(url, opciones = {}) {
+
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            window.location.href = "login.html";
+            throw new Error("No hay una sesión válida. Inicia sesión nuevamente.");
+        }
+
+        const headers = new Headers(opciones.headers || {});
+
+        headers.set("Authorization", `Bearer ${token}`);
+
+        if (opciones.body && !headers.has("Content-Type")) {
+            headers.set("Content-Type", "application/json");
+        }
+
+        return fetch(url, {
+            ...opciones,
+            headers: headers
+        });
+    }
+
     const botonesMenu = document.querySelectorAll(".menu-item");
     const secciones = document.querySelectorAll(".seccion");
     const tituloSeccion = document.getElementById("tituloSeccion");
     const btnSalir = document.getElementById("btnSalir");
 
 
+
+    /* OBTENER EL ID DEL USUARIO ACTUAL */
+
+    function obtenerIdAdministrador() {
+
+        const usuario = JSON.parse(
+            localStorage.getItem("usuario") || "null"
+        );
+
+        if (!usuario) {
+            return null;
+        }
+
+        return usuario.idUsuarios
+            ?? usuario.idUsuario
+            ?? usuario.id
+            ?? null;
+    }
     /* CAMBIAR SECCIÓN */
 
     botonesMenu.forEach(function (boton) {
@@ -14,7 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const seccionId = boton.getAttribute("data-seccion");
 
-
+            if (boton.dataset.seccion === "bitacora") {
+                cargarBitacora();
+            }
             /* QUITAR ACTIVO DE BOTONES */
 
             botonesMenu.forEach(function (item) {
@@ -48,44 +95,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const textoBoton = boton.textContent.trim();
 
-            tituloSeccion.textContent = textoBoton
-                .replace("🏠", "")
-                .replace("📅", "")
-                .replace("👥", "")
-                .replace("💅", "")
-                .replace("💰", "")
-                .replace("🕐", "")
-                .replace("📊", "")
-                .trim();
+            if (tituloSeccion) {
+                tituloSeccion.textContent = textoBoton
+                    .replace("🏠", "")
+                    .replace("📅", "")
+                    .replace("👥", "")
+                    .replace("💅", "")
+                    .replace("💰", "")
+                    .replace("🕐", "")
+                    .replace("📊", "")
+                    .trim();
+            }
 
         });
 
     });
 
 
-    /* CARGAR CITAS PARA ADMINISTRADORA */
+    /* CARGAR CITAS */
 
     async function cargarCitas() {
 
         try {
 
-            console.log("================================");
             console.log("CARGANDO TODAS LAS CITAS");
-            console.log("================================");
 
 
-            const respuesta = await fetch(
+            const respuesta = await fetchConToken(
                 "http://localhost:8080/api/citas"
             );
-
-
-            /* COMPROBAR RESPUESTA */
 
             console.log(
                 "STATUS CITAS:",
                 respuesta.status
             );
-
 
             if (!respuesta.ok) {
 
@@ -95,31 +138,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
-
             const citas = await respuesta.json();
-
-
-            /* MOSTRAR DATOS RECIBIDOS */
 
             console.log(
                 "CITAS RECIBIDAS:",
                 citas
             );
 
-
-            /* BUSCAR TABLA DE CITAS */
-
             const tablaCitas =
                 document.getElementById("tablaCitas");
 
-
-            /* BUSCAR TABLA DE PRÓXIMAS CITAS */
-
             const tablaProximasCitas =
                 document.getElementById("tablaProximasCitas");
-
-
-            /* SI NO EXISTE LA TABLA */
 
             if (!tablaCitas) {
 
@@ -130,30 +160,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-
-            /* LIMPIAR TABLA */
-
             tablaCitas.innerHTML = "";
-
-
-            /* LIMPIAR TABLA DE PRÓXIMAS CITAS */
 
             if (tablaProximasCitas) {
                 tablaProximasCitas.innerHTML = "";
             }
 
 
-            /* ACTUALIZAR CONTADOR DE CITAS */
+            /* ACTUALIZAR CONTADOR */
 
             const totalCitasHoy =
                 document.getElementById("totalCitasHoy");
 
-
-            /* OBTENER FECHA DE HOY */
-
             const hoy =
                 new Date().toISOString().split("T")[0];
-
 
             let cantidadCitasHoy = 0;
 
@@ -176,8 +196,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
 
-            /* MOSTRAR CANTIDAD DE CITAS DE HOY */
-
             if (totalCitasHoy) {
 
                 totalCitasHoy.textContent =
@@ -197,7 +215,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         </td>
                     </tr>
                 `;
-
 
                 if (tablaProximasCitas) {
 
@@ -221,7 +238,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const fila =
                     document.createElement("tr");
-
 
                 fila.innerHTML = `
 
@@ -247,7 +263,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 `;
 
-
                 tablaCitas.appendChild(fila);
 
             });
@@ -260,12 +275,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 const citasProximas =
                     citas.slice(0, 5);
 
-
                 citasProximas.forEach(function (cita) {
 
                     const fila =
                         document.createElement("tr");
-
 
                     fila.innerHTML = `
 
@@ -291,13 +304,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     `;
 
-
                     tablaProximasCitas.appendChild(fila);
 
                 });
 
             }
-
 
         } catch (error) {
 
@@ -317,21 +328,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
 
-            console.log("================================");
             console.log("CARGANDO SERVICIOS");
-            console.log("================================");
 
-
-            const respuesta = await fetch(
+            const respuesta = await fetchConToken(
                 "http://localhost:8080/api/servicios"
             );
-
 
             console.log(
                 "STATUS SERVICIOS:",
                 respuesta.status
             );
-
 
             if (!respuesta.ok) {
 
@@ -341,24 +347,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
-
             const servicios =
                 await respuesta.json();
-
 
             console.log(
                 "SERVICIOS RECIBIDOS:",
                 servicios
             );
 
-
-            /* BUSCAR CONTADOR DE SERVICIOS */
-
             const totalServicios =
                 document.getElementById("totalServicios");
-
-
-            /* MOSTRAR TOTAL DE SERVICIOS */
 
             if (totalServicios) {
 
@@ -385,23 +383,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
 
-            console.log("================================");
             console.log("CARGANDO CLIENTES");
-            console.log("================================");
 
-
-            const respuesta = await fetch(
+            const respuesta = await fetchConToken(
                 "http://localhost:8080/api/usuarios/clientes"
             );
-
-
-            /* COMPROBAR RESPUESTA */
 
             console.log(
                 "STATUS CLIENTES:",
                 respuesta.status
             );
-
 
             if (!respuesta.ok) {
 
@@ -411,26 +402,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
-
             const clientes =
                 await respuesta.json();
-
-
-            /* MOSTRAR DATOS RECIBIDOS */
 
             console.log(
                 "CLIENTES RECIBIDOS:",
                 clientes
             );
 
-
-            /* BUSCAR CONTADOR DE CLIENTES */
-
             const totalClientes =
                 document.getElementById("totalClientes");
-
-
-            /* MOSTRAR TOTAL DE CLIENTES */
 
             if (totalClientes) {
 
@@ -439,14 +420,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
-
-            /* BUSCAR TABLA DE CLIENTES */
-
             const tablaClientes =
                 document.getElementById("tablaClientes");
-
-
-            /* SI NO EXISTE LA TABLA */
 
             if (!tablaClientes) {
 
@@ -456,9 +431,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 return;
             }
-
-
-            /* LIMPIAR TABLA */
 
             tablaClientes.innerHTML = "";
 
@@ -486,7 +458,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 const fila =
                     document.createElement("tr");
 
-
                 fila.innerHTML = `
 
                     <td>
@@ -509,11 +480,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 `;
 
-
                 tablaClientes.appendChild(fila);
 
             });
-
 
         } catch (error) {
 
@@ -527,25 +496,800 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* CERRAR SESIÓN */
+    /* CARGAR USUARIOS */
 
-    btnSalir.addEventListener("click", function () {
+    async function cargarUsuarios() {
 
-        const confirmar = confirm(
-            "¿Seguro que quieres cerrar sesión?"
-        );
+        try {
+
+            console.log("CARGANDO USUARIOS");
+
+            const respuesta = await fetchConToken(
+                "http://localhost:8080/api/usuarios"
+            );
+
+            console.log(
+                "STATUS USUARIOS:",
+                respuesta.status
+            );
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "Error HTTP: " + respuesta.status
+                );
+
+            }
+
+            const usuarios =
+                await respuesta.json();
+
+            console.log(
+                "USUARIOS RECIBIDOS:",
+                usuarios
+            );
+
+            const tablaUsuarios =
+                document.getElementById("tablaUsuarios");
+
+            if (!tablaUsuarios) {
+
+                console.error(
+                    "No existe el elemento #tablaUsuarios en el HTML"
+                );
+
+                return;
+            }
+
+            tablaUsuarios.innerHTML = "";
 
 
-        if (confirmar) {
+            /* SI NO HAY USUARIOS */
 
-            localStorage.removeItem("usuario");
+            if (!usuarios || usuarios.length === 0) {
 
-            window.location.href =
-                "login.html";
+                tablaUsuarios.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="sin-datos">
+                            No hay usuarios registrados.
+                        </td>
+                    </tr>
+                `;
+
+                return;
+            }
+
+
+            /* MOSTRAR USUARIOS */
+
+            usuarios.forEach(function (usuario) {
+
+                const fila =
+                    document.createElement("tr");
+
+                fila.innerHTML = `
+
+    <td>
+        ${usuario.idUsuarios || ""}
+    </td>
+
+    <td>
+        ${usuario.Nombre || ""}
+        ${usuario.Paterno || ""}
+        ${usuario.Materno || ""}
+    </td>
+
+    <td>
+        ${usuario.Correo || ""}
+    </td>
+
+    <td>
+        ${usuario.Telefono || ""}
+    </td>
+
+    <td>
+       
+<select
+    class="select-rol"
+    data-id="${usuario.idUsuarios}"
+    data-rol-original="${usuario.Tipo_Usuario_idTipo_Usuario}">
+</select>
+
+    </td>
+
+    <td>
+      
+<select
+    class="select-estado"
+    data-id="${usuario.idUsuarios}"
+    data-estado-original="${usuario.Estado}">
+
+    <option value="Activo"
+        ${usuario.Estado === "Activo" ? "selected" : ""}>
+        Activo
+    </option>
+
+    <option value="Inactivo"
+        ${usuario.Estado === "Inactivo" ? "selected" : ""}>
+        Inactivo
+    </option>
+
+</select>
+
+    </td>
+
+    <td>
+        ${usuario.fecha_registro || ""}
+    </td>
+
+    <td>
+        <button
+            class="btn-guardar-usuario"
+            data-id="${usuario.idUsuarios}">
+            Guardar
+        </button>
+    </td>
+
+`;
+
+                tablaUsuarios.appendChild(fila);
+
+
+                /* CARGAR SELECT DE ROLES */
+
+                cargarRolesEnSelect(
+                    fila.querySelector(".select-rol"),
+                    usuario.Tipo_Usuario_idTipo_Usuario
+                );
+
+            });
+
+        } catch (error) {
+
+            console.error(
+                "ERROR AL CARGAR LOS USUARIOS:",
+                error
+            );
 
         }
 
+    }
+
+
+
+    /* CARGAR BITÁCORA ADMINISTRATIVA */
+
+    async function cargarBitacora() {
+
+        const tabla = document.getElementById("tablaBitacora");
+
+        if (!tabla) {
+            return;
+        }
+
+        try {
+
+            const respuesta = await fetchConToken(
+                "http://localhost:8080/api/bitacora"
+            );
+
+            if (!respuesta.ok) {
+                throw new Error("No se pudo cargar la bitácora.");
+            }
+
+            const registros = await respuesta.json();
+
+            tabla.innerHTML = "";
+
+            if (registros.length === 0) {
+                tabla.innerHTML = `
+                <tr>
+                    <td colspan="4" class="sin-datos">
+                        No hay registros para mostrar.
+                    </td>
+                </tr>
+            `;
+                return;
+            }
+
+            registros.forEach(function (registro) {
+
+                const fila = document.createElement("tr");
+
+                const administrador = [
+                    registro.Nombre,
+                    registro.Paterno,
+                    registro.Materno
+                ].filter(Boolean).join(" ");
+
+                const fechaHora = registro.FechaHora
+                    ? new Date(registro.FechaHora).toLocaleString("es-MX", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: true
+                    })
+                    : "";
+
+                [
+                    fechaHora,
+                    administrador || "Usuario no disponible",
+                    registro.Accion || "",
+                    registro.Descripcion || ""
+                ].forEach(function (valor) {
+
+                    const celda = document.createElement("td");
+                    celda.textContent = valor;
+                    fila.appendChild(celda);
+
+                });
+
+                tabla.appendChild(fila);
+
+            });
+
+        } catch (error) {
+
+            console.error("ERROR AL CARGAR LA BITÁCORA:", error);
+
+            tabla.innerHTML = `
+            <tr>
+                <td colspan="4" class="sin-datos">
+                    No se pudo cargar la bitácora.
+                </td>
+            </tr>
+        `;
+        }
+    }
+
+
+
+
+    /* CARGAR ROLES */
+
+    async function cargarRolesEnSelect(select, rolActual) {
+
+        try {
+
+            const respuesta = await fetchConToken(
+                "http://localhost:8080/api/usuarios/roles"
+            );
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "Error HTTP: " + respuesta.status
+                );
+
+            }
+
+            const roles =
+                await respuesta.json();
+
+            select.innerHTML = "";
+
+            roles.forEach(function (rol) {
+
+                const opcion =
+                    document.createElement("option");
+
+                opcion.value =
+                    rol.idTipo_Usuario;
+
+                opcion.textContent =
+                    rol.Nombre;
+
+                if (
+                    Number(rol.idTipo_Usuario) ===
+                    Number(rolActual)
+                ) {
+
+                    opcion.selected = true;
+
+                }
+
+                select.appendChild(opcion);
+
+            });
+
+        } catch (error) {
+
+            console.error(
+                "ERROR AL CARGAR LOS ROLES:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* ABRIR FORMULARIO NUEVO USUARIO */
+
+    const btnNuevoUsuario =
+        document.getElementById("btnNuevoUsuario");
+
+    const formularioUsuario =
+        document.getElementById("formularioUsuario");
+
+    const btnCancelarUsuario =
+        document.getElementById("btnCancelarUsuario");
+
+    const formNuevoUsuario =
+        document.getElementById("formNuevoUsuario");
+
+
+    if (btnNuevoUsuario) {
+
+        btnNuevoUsuario.addEventListener(
+            "click",
+            function () {
+
+                formularioUsuario.classList.remove(
+                    "oculto"
+                );
+
+                formNuevoUsuario.reset();
+
+                cargarRolesFormulario();
+
+            }
+        );
+
+    }
+
+
+    /* CERRAR FORMULARIO */
+
+    if (btnCancelarUsuario) {
+
+        btnCancelarUsuario.addEventListener(
+            "click",
+            function () {
+
+                formularioUsuario.classList.add(
+                    "oculto"
+                );
+
+                formNuevoUsuario.reset();
+
+            }
+        );
+
+    }
+
+
+    /* CARGAR ROLES DEL FORMULARIO */
+
+    async function cargarRolesFormulario() {
+
+        const selectRol =
+            document.getElementById("rolUsuario");
+
+        if (!selectRol) {
+            return;
+        }
+
+        try {
+
+            const respuesta = await fetchConToken(
+                "http://localhost:8080/api/usuarios/roles"
+            );
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "Error HTTP: " + respuesta.status
+                );
+
+            }
+
+            const roles =
+                await respuesta.json();
+
+            selectRol.innerHTML = `
+                <option value="">
+                    Seleccionar rol
+                </option>
+            `;
+
+            roles.forEach(function (rol) {
+
+                const opcion =
+                    document.createElement("option");
+
+                opcion.value =
+                    rol.idTipo_Usuario;
+
+                opcion.textContent =
+                    rol.Nombre;
+
+                selectRol.appendChild(opcion);
+
+            });
+
+        } catch (error) {
+
+            console.error(
+                "ERROR AL CARGAR LOS ROLES:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* GUARDAR NUEVO USUARIO */
+
+    if (formNuevoUsuario) {
+
+        formNuevoUsuario.addEventListener(
+            "submit",
+            async function (evento) {
+
+                evento.preventDefault();
+
+
+                const nombre =
+                    document.getElementById(
+                        "nombreUsuario"
+                    ).value.trim();
+
+                const paterno =
+                    document.getElementById(
+                        "paternoUsuario"
+                    ).value.trim();
+
+                const materno =
+                    document.getElementById(
+                        "maternoUsuario"
+                    ).value.trim();
+
+                const telefono =
+                    document.getElementById(
+                        "telefonoUsuario"
+                    ).value.trim();
+
+                const correo =
+                    document.getElementById(
+                        "correoUsuario"
+                    ).value.trim();
+
+                const contraseña =
+                    document.getElementById(
+                        "contrasenaUsuario"
+                    ).value;
+
+                const tipoUsuario =
+                    document.getElementById(
+                        "rolUsuario"
+                    ).value;
+
+
+                /* VALIDAR CAMPOS */
+
+                if (
+                    !nombre ||
+                    !correo ||
+                    !contraseña ||
+                    !tipoUsuario
+                ) {
+
+                    mostrarAlerta(
+                        "Completa todos los campos obligatorios.",
+                        "Campos incompletos"
+                    );
+
+                    return;
+                }
+
+                /* PREPARAR DATOS */
+
+                const datos = {
+
+                    Nombre: nombre,
+
+                    Paterno: paterno,
+
+                    Materno: materno,
+
+                    Telefono: telefono,
+
+                    Correo: correo,
+
+                    Contraseña: contraseña,
+
+                    Tipo_Usuario_idTipo_Usuario:
+                        Number(tipoUsuario),
+                    idAdministrador: obtenerIdAdministrador()
+
+                };
+
+
+                console.log(
+                    "DATOS DEL NUEVO USUARIO:",
+                    datos
+                );
+
+
+                try {
+
+                    const respuesta = await fetchConToken(
+                        "http://localhost:8080/api/usuarios",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify(datos)
+                        }
+                    );
+
+
+                    const resultado =
+                        await respuesta.json();
+
+
+                    console.log(
+                        "RESPUESTA DEL SERVIDOR:",
+                        resultado
+                    );
+
+
+                    if (!respuesta.ok) {
+
+                        throw new Error(
+                            resultado.mensaje ||
+                            "No se pudo registrar el usuario."
+                        );
+
+                    }
+
+
+                    /* MOSTRAR MENSAJE */
+
+                    if (Number(tipoUsuario) === 1) {
+
+                        mostrarAlerta(
+                            "El usuario fue registrado correctamente con el rol de Administrador.",
+                            "Usuario registrado"
+                        );
+
+                    } else {
+
+                        mostrarAlerta(
+                            resultado.mensaje,
+                            "Usuario registrado"
+                        );
+
+                    }
+
+
+                    /* CERRAR FORMULARIO */
+
+                    formularioUsuario.classList.add(
+                        "oculto"
+                    );
+
+                    formNuevoUsuario.reset();
+
+
+                    /* ACTUALIZAR TABLA */
+
+                    cargarUsuarios();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "ERROR AL REGISTRAR USUARIO:",
+                        error
+                    );
+
+                    mostrarAlerta(
+                        error.message ||
+                        "Ocurrió un error al registrar el usuario.",
+                        "Error"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* CAMBIAR ROL Y ESTADO */
+
+    document.addEventListener("click", async function (evento) {
+
+        if (!evento.target.classList.contains("btn-guardar-usuario")) {
+            return;
+        }
+
+        const boton = evento.target;
+        const idUsuario = boton.getAttribute("data-id");
+        const fila = boton.closest("tr");
+
+        const selectRol = fila.querySelector(".select-rol");
+        const selectEstado = fila.querySelector(".select-estado");
+
+        const nuevoRol = Number(selectRol.value);
+        const nuevoEstado = selectEstado.value;
+
+        const rolAnterior = Number(selectRol.dataset.rolOriginal);
+        const estadoAnterior = selectEstado.dataset.estadoOriginal;
+
+        const cambioRol = nuevoRol !== rolAnterior;
+        const cambioEstado = nuevoEstado !== estadoAnterior;
+
+        if (!nuevoRol || !nuevoEstado) {
+            mostrarAlerta(
+                "Selecciona un rol y un estado.",
+                "Datos requeridos"
+            );
+            return;
+        }
+
+        if (!cambioRol && !cambioEstado) {
+            mostrarAlerta(
+                "No hiciste ningún cambio.",
+                "Sin cambios"
+            );
+            return;
+        }
+
+        try {
+
+            /* ACTUALIZAR ROL SOLO SI CAMBIÓ */
+
+            if (cambioRol) {
+
+                const respuestaRol = await fetchConToken(
+                    `http://localhost:8080/api/usuarios/${idUsuario}/rol`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            idTipoUsuario: nuevoRol,
+                            idAdministrador: obtenerIdAdministrador()
+                        })
+                    }
+                );
+
+                const resultadoRol = await respuestaRol.json();
+
+                if (!respuestaRol.ok) {
+                    throw new Error(
+                        resultadoRol.mensaje ||
+                        "No se pudo actualizar el rol."
+                    );
+                }
+
+                selectRol.dataset.rolOriginal = nuevoRol;
+            }
+
+            /* ACTUALIZAR ESTADO SOLO SI CAMBIÓ */
+
+            if (cambioEstado) {
+
+                const respuestaEstado = await fetchConToken(
+                    `http://localhost:8080/api/usuarios/${idUsuario}/estado`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            estado: nuevoEstado,
+                            idAdministrador: obtenerIdAdministrador()
+                        })
+                    }
+                );
+
+                const resultadoEstado = await respuestaEstado.json();
+
+                if (!respuestaEstado.ok) {
+                    throw new Error(
+                        resultadoEstado.mensaje ||
+                        "No se pudo actualizar el estado."
+                    );
+                }
+
+                selectEstado.dataset.estadoOriginal = nuevoEstado;
+            }
+
+            mostrarAlerta(
+                "Los cambios se guardaron correctamente.",
+                "Usuario actualizado"
+            );
+
+            await cargarUsuarios();
+            await cargarBitacora();
+
+        } catch (error) {
+
+            console.error("ERROR AL ACTUALIZAR USUARIO:", error);
+
+            mostrarAlerta(
+                error.message ||
+                "Ocurrió un error al actualizar el usuario.",
+                "Error"
+            );
+        }
     });
+
+
+    /* CERRAR SESIÓN */
+
+    document.getElementById("btnSalir").addEventListener(
+        "click",
+        function () {
+
+            const modal =
+                document.getElementById("modalConfirmarSalida");
+
+            modal.style.display = "flex";
+        }
+    );
+
+
+    /* CANCELAR CERRAR SESIÓN */
+
+    document.getElementById("btnCancelarSalida").addEventListener(
+        "click",
+        function () {
+
+            const modal =
+                document.getElementById("modalConfirmarSalida");
+
+            modal.style.display = "none";
+        }
+    );
+
+
+    /* CONFIRMAR CERRAR SESIÓN */
+
+    document.getElementById("btnConfirmarSalida").addEventListener(
+        "click",
+        function () {
+
+            localStorage.removeItem("usuario");
+            localStorage.removeItem("token");
+            sessionStorage.removeItem("identificadorMfa");
+
+            window.location.href = "login.html";
+        }
+    );
+
+    /* ALERTA PERSONALIZADA */
+
+    function mostrarAlerta(mensaje, titulo = "Aviso") {
+
+        const modal = document.getElementById("modalAlerta");
+        const texto = document.getElementById("textoAlerta");
+        const tituloElemento = document.getElementById("tituloAlerta");
+        const boton = document.getElementById("btnAceptarAlerta");
+
+        tituloElemento.textContent = titulo;
+        texto.textContent = mensaje;
+
+        modal.style.display = "flex";
+
+        boton.onclick = function () {
+            modal.style.display = "none";
+        };
+    }
 
 
     /* EJECUTAR CARGA DE CITAS */
@@ -561,5 +1305,14 @@ document.addEventListener("DOMContentLoaded", function () {
     /* EJECUTAR CARGA DE CLIENTES */
 
     cargarClientes();
+
+
+    /* EJECUTAR CARGA DE USUARIOS */
+
+    cargarUsuarios();
+
+    /* EJECUTAR CARGA DE BITÁCORA */
+
+    cargarBitacora();
 
 });

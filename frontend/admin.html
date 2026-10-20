@@ -17,10 +17,14 @@
     <aside class="sidebar">
 
         <div class="logo">
-            Andy <span>Nails</span>
+            <h1>
+                <span>Andy</span><strong>Nails</strong>
+            </h1>
         </div>
 
-        <p class="tipo-usuario">ADMINISTRADORA</p>
+        <div class="tipo-usuario">
+            ADMINISTRADORA
+        </div>
 
         <nav class="menu">
 
@@ -34,6 +38,10 @@
 
             <button class="menu-item" data-seccion="clientes">
                 Clientes
+            </button>
+
+            <button class="menu-item" data-seccion="usuarios">
+                Usuarios
             </button>
 
             <button class="menu-item" data-seccion="servicios">
@@ -52,148 +60,108 @@
                 Reportes
             </button>
 
+
+
+            <button class="menu-item" data-seccion="bitacora">
+                Bitácora administrativa
+            </button>
+
+
+
         </nav>
 
-        <button class="btn-salir" id="btnSalir">
+        <button id="btnSalir" class="btn-salir">
             Cerrar sesión
         </button>
 
     </aside>
 
 
-    <!--  CONTENIDO   -->
+    <!-- CONTENIDO PRINCIPAL -->
 
     <main class="contenido">
 
-        <!--  HEADER  -->
-
         <header class="topbar">
 
-            <div>
-                <h1 id="tituloSeccion">Inicio</h1>
-
-                <p>
-                    Panel de administración de Andy Nails
-                </p>
-            </div>
+            <div></div>
 
             <div class="admin-info">
-
+                <span>Administradora</span>
                 <div class="avatar">
                     A
                 </div>
-
-                <div>
-                    <strong>Administradora</strong>
-                    <span>Andy Nails</span>
-                </div>
-
             </div>
 
         </header>
 
 
-        <!--   INICIO  -->
+        <!-- INICIO -->
 
         <section id="inicio" class="seccion activa">
 
             <div class="bienvenida">
 
-                <h2>
-                    ¡Bienvenida, Administradora!
-                </h2>
-
-                <p>
-                    Desde aquí puedes administrar las citas,
-                    clientes, servicios, pagos y horarios de Andy Nails.
-                </p>
+                <div>
+                    <h2>Resumen general</h2>
+                    <p>Información general de Andy Nails</p>
+                </div>
 
             </div>
 
-
-            <!-- ================= TARJETAS RESUMEN ================= -->
 
             <div class="tarjetas-resumen">
 
-                <!-- CITAS DE HOY -->
-
                 <div class="tarjeta-resumen">
 
-                    <div class="icono"></div>
+                    <div class="icono">
+                        C
+                    </div>
 
                     <div>
-
-                        <span>
-                            Citas de hoy
-                        </span>
-
-                        <strong id="totalCitasHoy">
-                            0
-                        </strong>
-
+                        <span>Citas de hoy</span>
+                        <strong id="totalCitasHoy">0</strong>
                     </div>
 
                 </div>
 
 
-                <!-- CLIENTES -->
-
                 <div class="tarjeta-resumen">
 
-                    <div class="icono"></div>
+                    <div class="icono">
+                        U
+                    </div>
 
                     <div>
-
-                        <span>
-                            Clientes
-                        </span>
-
-                        <strong id="totalClientes">
-                            0
-                        </strong>
-
+                        <span>Clientes</span>
+                        <strong id="totalClientes">0</strong>
                     </div>
 
                 </div>
 
 
-                <!-- SERVICIOS -->
-
                 <div class="tarjeta-resumen">
 
-                    <div class="icono"></div>
+                    <div class="icono">
+                        S
+                    </div>
 
                     <div>
-
-                        <span>
-                            Servicios
-                        </span>
-
-                        <strong id="totalServicios">
-                            0
-                        </strong>
-
+                        <span>Servicios</span>
+                        <strong id="totalServicios">0</strong>
                     </div>
 
                 </div>
 
 
-                <!-- PAGOS PENDIENTES -->
-
                 <div class="tarjeta-resumen">
 
-                    <div class="icono"></div>
+                    <div class="icono">
+                        P
+                    </div>
 
                     <div>
-
-                        <span>
-                            Pagos pendientes
-                        </span>
-
-                        <strong id="totalPagosPendientes">
-                            0
-                        </strong>
-
+                        <span>Pagos pendientes</span>
+                        <strong id="totalPagosPendientes">0</strong>
                     </div>
 
                 </div>
@@ -201,13 +169,9 @@
             </div>
 
 
-            <!--  PRÓXIMAS CITAS   -->
-
             <div class="panel">
 
-                <h2>
-                    Próximas citas
-                </h2>
+                <h3>Próximas citas</h3>
 
                 <div class="tabla-contenedor">
 
@@ -216,42 +180,16 @@
                         <thead>
 
                             <tr>
-
-                                <th>
-                                    Cliente
-                                </th>
-
-                                <th>
-                                    Fecha
-                                </th>
-
-                                <th>
-                                    Hora
-                                </th>
-
-                                <th>
-                                    Servicio
-                                </th>
-
-                                <th>
-                                    Estado
-                                </th>
-
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Servicio</th>
+                                <th>Estado</th>
                             </tr>
 
                         </thead>
 
-
                         <tbody id="tablaProximasCitas">
-
-                            <tr>
-
-                                <td colspan="5" class="sin-datos">
-                                    No hay citas registradas.
-                                </td>
-
-                            </tr>
-
                         </tbody>
 
                     </table>
@@ -263,19 +201,17 @@
         </section>
 
 
-        <!--   CITAS  -->
+        <!-- CITAS -->
 
         <section id="citas" class="seccion">
 
             <div class="titulo-pagina">
 
-                <h2>
-                    Citas
-                </h2>
+                <h2>Citas</h2>
 
-                <button class="btn-principal">
-                    + Nueva cita
-                </button>
+                <p>
+                    Administración de las citas registradas
+                </p>
 
             </div>
 
@@ -289,46 +225,17 @@
                         <thead>
 
                             <tr>
-
-                                <th>
-                                    Cliente
-                                </th>
-
-                                <th>
-                                    Fecha
-                                </th>
-
-                                <th>
-                                    Hora
-                                </th>
-
-                                <th>
-                                    Servicio
-                                </th>
-
-                                <th>
-                                    Estado
-                                </th>
-
-                                <th>
-                                    Acciones
-                                </th>
-
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Servicio</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
                             </tr>
 
                         </thead>
 
-
                         <tbody id="tablaCitas">
-
-                            <tr>
-
-                                <td colspan="6" class="sin-datos">
-                                    No hay citas registradas.
-                                </td>
-
-                            </tr>
-
                         </tbody>
 
                     </table>
@@ -340,15 +247,17 @@
         </section>
 
 
-        <!--   CLIENTES   -->
+        <!-- CLIENTES -->
 
         <section id="clientes" class="seccion">
 
             <div class="titulo-pagina">
 
-                <h2>
-                    Clientes
-                </h2>
+                <h2>Clientes</h2>
+
+                <p>
+                    Clientes registrados en Andy Nails
+                </p>
 
             </div>
 
@@ -362,38 +271,15 @@
                         <thead>
 
                             <tr>
-
-                                <th>
-                                    Nombre
-                                </th>
-
-                                <th>
-                                    Correo
-                                </th>
-
-                                <th>
-                                    Teléfono
-                                </th>
-
-                                <th>
-                                    Citas
-                                </th>
-
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Citas</th>
                             </tr>
 
                         </thead>
 
-
                         <tbody id="tablaClientes">
-
-                            <tr>
-
-                                <td colspan="4" class="sin-datos">
-                                    No hay clientes registrados.
-                                </td>
-
-                            </tr>
-
                         </tbody>
 
                     </table>
@@ -405,82 +291,220 @@
         </section>
 
 
-        <!--  SERVICIOS  -->
+        <!-- USUARIOS -->
+
+        <section id="usuarios" class="seccion">
+
+            <div class="titulo-pagina">
+
+                <div>
+                    <h2>Usuarios</h2>
+
+                    <p>
+                        Administración de usuarios y roles
+                    </p>
+                </div>
+
+                <button id="btnNuevoUsuario" class="btn-principal">
+                    + Nuevo usuario
+                </button>
+
+            </div>
+
+
+            <!-- FORMULARIO NUEVO USUARIO -->
+
+            <div id="formularioUsuario" class="panel formulario-usuario oculto">
+
+                <h3>Registrar nuevo usuario</h3>
+
+                <form id="formNuevoUsuario">
+
+                    <div class="form-grid">
+
+                        <div class="campo">
+
+                            <label for="nombreUsuario">
+                                Nombre
+                            </label>
+
+                            <input type="text" id="nombreUsuario" maxlength="10" required>
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="paternoUsuario">
+                                Apellido paterno
+                            </label>
+
+                            <input type="text" id="paternoUsuario" maxlength="10">
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="maternoUsuario">
+                                Apellido materno
+                            </label>
+
+                            <input type="text" id="maternoUsuario" maxlength="10">
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="telefonoUsuario">
+                                Teléfono
+                            </label>
+
+                            <input type="text" id="telefonoUsuario" maxlength="10">
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="correoUsuario">
+                                Correo
+                            </label>
+
+                            <input type="email" id="correoUsuario" maxlength="50" required>
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="contrasenaUsuario">
+                                Contraseña inicial
+                            </label>
+
+                            <input type="password" id="contrasenaUsuario" required>
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="rolUsuario">
+                                Rol
+                            </label>
+
+                            <select id="rolUsuario" required>
+
+                                <option value="">
+                                    Seleccionar rol
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="acciones-formulario">
+
+                        <button type="button" id="btnCancelarUsuario" class="btn-form-cancelar">
+                            Cancelar
+                        </button>
+
+                        <button type="submit" class="btn-form-guardar">
+                            Guardar usuario
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- TABLA DE USUARIOS -->
+
+            <div class="panel">
+
+                <h3>Usuarios registrados</h3>
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Fecha de registro</th>
+                                <th>Acciones</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaUsuarios">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SERVICIOS -->
 
         <section id="servicios" class="seccion">
 
             <div class="titulo-pagina">
 
-                <h2>
-                    Servicios
-                </h2>
+                <h2>Servicios</h2>
 
-                <button class="btn-principal">
-                    + Nuevo servicio
-                </button>
+                <p>
+                    Administración de servicios
+                </p>
 
             </div>
 
 
             <div class="servicios-grid">
 
-                <!-- UÑAS -->
-
                 <div class="servicio-card">
 
-                    <div class="servicio-icono"></div>
+                    <h3>Uñas</h3>
 
-                    <h3>
-                        Uñas
-                    </h3>
-
-                    <p>
-                        Administración de servicios de uñas.
-                    </p>
-
-                    <button>
+                    <button class="btn-principal">
                         Administrar
                     </button>
 
                 </div>
 
 
-                <!-- MAQUILLAJE -->
-
                 <div class="servicio-card">
 
-                    <div class="servicio-icono"></div>
+                    <h3>Maquillaje</h3>
 
-                    <h3>
-                        Maquillaje
-                    </h3>
-
-                    <p>
-                        Administración de servicios de maquillaje.
-                    </p>
-
-                    <button>
+                    <button class="btn-principal">
                         Administrar
                     </button>
 
                 </div>
 
 
-                <!-- PEINADOS -->
-
                 <div class="servicio-card">
 
-                    <div class="servicio-icono"></div>
+                    <h3>Peinados</h3>
 
-                    <h3>
-                        Peinados
-                    </h3>
-
-                    <p>
-                        Administración de servicios de peinados.
-                    </p>
-
-                    <button>
+                    <button class="btn-principal">
                         Administrar
                     </button>
 
@@ -491,15 +515,17 @@
         </section>
 
 
-        <!-- ================= PAGOS ================= -->
+        <!-- PAGOS -->
 
         <section id="pagos" class="seccion">
 
             <div class="titulo-pagina">
 
-                <h2>
-                    Pagos
-                </h2>
+                <h2>Pagos</h2>
+
+                <p>
+                    Administración de pagos
+                </p>
 
             </div>
 
@@ -513,46 +539,17 @@
                         <thead>
 
                             <tr>
-
-                                <th>
-                                    Cliente
-                                </th>
-
-                                <th>
-                                    Servicio
-                                </th>
-
-                                <th>
-                                    Total
-                                </th>
-
-                                <th>
-                                    Anticipo
-                                </th>
-
-                                <th>
-                                    Restante
-                                </th>
-
-                                <th>
-                                    Estado
-                                </th>
-
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Total</th>
+                                <th>Anticipo</th>
+                                <th>Restante</th>
+                                <th>Estado</th>
                             </tr>
 
                         </thead>
 
-
                         <tbody id="tablaPagos">
-
-                            <tr>
-
-                                <td colspan="6" class="sin-datos">
-                                    No hay pagos registrados.
-                                </td>
-
-                            </tr>
-
                         </tbody>
 
                     </table>
@@ -564,15 +561,31 @@
         </section>
 
 
-        <!--  HORARIOS  -->
+        <!-- HORARIOS -->
 
         <section id="horarios" class="seccion">
 
             <div class="titulo-pagina">
 
-                <h2>
-                    Horarios
-                </h2>
+                <h2>Horarios</h2>
+
+                <p>
+                    Administración de horarios y bloqueos
+                </p>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h3>Bloqueos de horario</h3>
+
+                <p>
+                    Desde esta sección podrás bloquear horarios
+                    en los que no se podrán realizar citas.
+                </p>
+
+                <br>
 
                 <button class="btn-principal">
                     + Bloquear horario
@@ -580,99 +593,55 @@
 
             </div>
 
-
-            <div class="panel">
-
-                <h3>
-                    Horarios bloqueados
-                </h3>
-
-                <p class="texto-info">
-
-                    Aquí podrás administrar los horarios
-                    en los que no se podrán agendar citas.
-
-                </p>
-
-            </div>
-
         </section>
 
 
-        <!-- ================= REPORTES ================= -->
+        <!-- REPORTES -->
 
         <section id="reportes" class="seccion">
 
             <div class="titulo-pagina">
 
-                <h2>
-                    Reportes
-                </h2>
+                <h2>Reportes</h2>
+
+                <p>
+                    Información general del sistema
+                </p>
 
             </div>
 
 
-            <div class="reportes-grid">
+            <div class="servicios-grid">
 
-                <!-- REPORTE CITAS -->
+                <div class="servicio-card">
 
-                <div class="reporte-card">
-
-                    <span></span>
-
-                    <h3>
-                        Citas
-                    </h3>
+                    <h3>Citas</h3>
 
                     <p>
-                        Consulta las citas realizadas.
+                        Reporte de citas registradas.
                     </p>
-
-                    <button>
-                        Ver reporte
-                    </button>
 
                 </div>
 
 
-                <!-- REPORTE INGRESOS -->
+                <div class="servicio-card">
 
-                <div class="reporte-card">
-
-                    <span></span>
-
-                    <h3>
-                        Ingresos
-                    </h3>
+                    <h3>Clientes</h3>
 
                     <p>
-                        Consulta los ingresos registrados.
+                        Reporte de clientes registrados.
                     </p>
-
-                    <button>
-                        Ver reporte
-                    </button>
 
                 </div>
 
 
-                <!-- REPORTE CLIENTES -->
+                <div class="servicio-card">
 
-                <div class="reporte-card">
-
-                    <span></span>
-
-                    <h3>
-                        Clientes
-                    </h3>
+                    <h3>Servicios</h3>
 
                     <p>
-                        Consulta información de clientes.
+                        Reporte de servicios utilizados.
                     </p>
-
-                    <button>
-                        Ver reporte
-                    </button>
 
                 </div>
 
@@ -680,13 +649,103 @@
 
         </section>
 
+
+
+
+
+        <!-- BITÁCORA ADMINISTRATIVA -->
+        <section id="bitacora" class="seccion">
+
+            <div class="titulo-pagina">
+                <div>
+                    <h2>Bitácora administrativa</h2>
+                    <p>Registro de las acciones realizadas en el sistema</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Historial de actividades</h3>
+
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha y hora</th>
+                                <th>Administrador</th>
+                                <th>Acción</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaBitacora">
+                            <tr>
+                                <td colspan="4" class="sin-datos">
+                                    No hay registros para mostrar.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+
+
     </main>
 
 
-    <!--  JAVASCRIPT  -->
-
     <script src="js/admin.js"></script>
 
+    <!-- ALERTA ANDY NAILS -->
+    <div id="modalAlerta" class="modal-alerta">
+        <div class="contenido-alerta">
+
+            <div id="iconoAlerta" class="icono-alerta">
+                ✓
+            </div>
+
+            <h2 id="tituloAlerta">Aviso</h2>
+
+            <p id="textoAlerta"></p>
+
+            <button id="btnAceptarAlerta" class="btn-aceptar-alerta">
+                Aceptar
+            </button>
+
+        </div>
+    </div>
+
+    <!-- CONFIRMAR CERRAR SESIÓN -->
+    <div id="modalConfirmarSalida" class="modal-alerta">
+
+        <div class="contenido-alerta">
+
+            <div class="icono-alerta">
+                ?
+            </div>
+
+            <h2>Cerrar sesión</h2>
+
+            <p>
+                ¿Seguro que quieres cerrar sesión?
+            </p>
+
+            <div class="botones-confirmacion">
+
+                <button id="btnCancelarSalida" class="btn-cancelar-alerta">
+                    Cancelar
+                </button>
+
+                <button id="btnConfirmarSalida" class="btn-aceptar-alerta">
+                    Cerrar sesión
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 </body>
 
 </html>

@@ -1,0 +1,141 @@
+/* ESTILOS DE VERIFICACIÓN MFA - ANDY NAILS */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #fff8fa, #f8e5ec);
+    color: #3d3035;
+}
+
+.contenedor-login {
+    width: 100%;
+    max-width: 440px;
+    margin: auto;
+}
+
+.formulario-login {
+    width: 100%;
+    padding: 42px 35px;
+    background: #ffffff;
+    border: 1px solid #f2dce4;
+    border-radius: 22px;
+    box-shadow: 0 12px 35px rgba(91, 49, 65, 0.12);
+    text-align: center;
+}
+
+.formulario-login h1 {
+    margin-bottom: 14px;
+    color: #3d3035;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.formulario-login p {
+    margin-bottom: 25px;
+    color: #76656d;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+#mfaForm {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 13px;
+    text-align: left;
+}
+
+#mfaForm label {
+    color: #493940;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#mfaForm input {
+    width: 100%;
+    height: 58px;
+    padding: 12px;
+    border: 1px solid #e7cbd6;
+    border-radius: 12px;
+    outline: none;
+    background: #fffafd;
+    color: #3d3035;
+    font-family: inherit;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 9px;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#mfaForm input::placeholder {
+    color: #d8b9c5;
+    letter-spacing: 9px;
+}
+
+#mfaForm input:focus {
+    border-color: #d88ba4;
+    box-shadow: 0 0 0 4px rgba(216, 139, 164, 0.16);
+}
+
+#mfaForm button {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 12px;
+    background: #d88ba4;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#mfaForm button:hover {
+    background: #c87591;
+    transform: translateY(-1px);
+}
+
+#mfaForm button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#mfaForm #mensaje {
+    min-height: 20px;
+    margin: 5px 0 0;
+    color: #9b4966;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 16px;
+    }
+
+    .formulario-login {
+        padding: 32px 23px;
+        border-radius: 18px;
+    }
+
+    .formulario-login h1 {
+        font-size: 24px;
+    }
+}
